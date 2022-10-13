@@ -1,0 +1,174 @@
+<span class="topModal"></span>
+<h1 mat-dialog-title>Form Transaction</h1>
+<div mat-dialog-content>
+  <form [formGroup]="transactionForm">
+
+    <!-- <mat-form-field appearance="outline"> -->
+    <mat-form-field appearance="outline" [hidden]="true" style="display: none;">
+      <input
+        matInput
+        formControlName="_id">
+    </mat-form-field>
+
+    <div class="contGpInput">
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select
+          cdkFocusInitial
+          formControlName="categoryOpc">
+          <mat-select-trigger class="selectFormCategories">
+            <i
+              class="fa-light"
+              style="top: 0;"
+              [ngClass]="iconSelecTrigger"
+              [ngStyle]="{'background-color': colorSelecTrigger}">
+            </i>
+            {{textSelecTrigger}}
+          </mat-select-trigger>
+          <button
+            class="btnCategory"
+            (click)="category = 'Gasto'"
+            [ngClass]="{'act': category === 'Gasto'}">
+            Gasto
+          </button>
+          <button
+            class="btnCategory"
+            (click)="category = 'Ingreso'" 
+            [ngClass]="{'act': category === 'Ingreso'}">
+            Ingreso
+          </button>
+          <div *ngIf="category === 'Gasto'">
+            <div *ngFor="let listSpent of getListCategories">
+              <mat-option
+                *ngIf="listSpent.category === 'Gasto'"
+                (click)="iconSelecTrigger = listSpent.icon; colorSelecTrigger = listSpent.color; textSelecTrigger = listSpent.name;"
+                [value]="listSpent.name">
+                <i class="fa-light" [ngClass]="listSpent.icon" [ngStyle]="{'background-color': listSpent.color}"></i>
+                {{listSpent.name}}
+              </mat-option>
+            </div>
+          </div>
+          <div *ngIf="category === 'Ingreso'">
+            <div *ngFor="let listEntry of getListCategories">
+              <mat-option
+                *ngIf="listEntry.category === 'Ingreso'"
+                (click)="iconSelecTrigger = listEntry.icon; colorSelecTrigger = listEntry.color; textSelecTrigger = listEntry.name;"
+                [value]="listEntry.name">
+                <i class="fa-light" [ngClass]="listEntry.icon" [ngStyle]="{'background-color': listEntry.color}"></i>
+                {{listEntry.name}}
+              </mat-option>
+            </div>
+          </div>
+        </mat-select>
+        <mat-error *ngIf="transactionForm.get('categoryOpc')?.errors?.['required']">Error</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>MM/DD/YYYY</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="date"
+          placeholder="MM/DD/YYYY">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="transactionForm.get('date')?.errors?.['required']">Error</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Notes</mat-label>
+      <textarea 
+        matInput
+        formControlName="notes"
+        placeholder="notes...">
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Labels</mat-label>
+      <mat-select
+        formControlName="labels"
+        multiple>
+        <mat-option
+          *ngFor="let toppingsLabels of toppingListLabels"
+          [value]="toppingsLabels">
+          {{toppingsLabels}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Labels</mat-label>
+      <mat-select
+        formControlName="labels"
+        (selectionChange)=" showSelectValue($event.value)"
+        multiple>
+        <mat-select-trigger>
+          {{toppingsLabels[0] || ''}}
+          <span *ngIf="(toppingsLabels?.length || 0) > 1" class="example-additional-selection">
+            (+{{(toppingsLabels.length || 0) - 1}} {{toppingsLabels.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option
+          *ngFor="let toppingsLabels of toppingListLabels"
+          [value]="toppingsLabels"
+          >
+          {{toppingsLabels}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <div class="contGpInput">
+      <mat-form-field appearance="outline">
+        <mat-label>Amount</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="amoint"
+          class="example-right-align"
+          placeholder="0">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+        <mat-error *ngIf="transactionForm.get('amoint')?.errors?.['required']">Error</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Coin</mat-label>
+        <mat-select
+          formControlName="coin">
+          <mat-option
+            *ngFor="let coin of coins"
+            [value]="coin.value">
+            {{coin.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- <div>
+      <input
+        type="file"
+        formControlName="img"
+        (change)="onFileSelect($event)">
+      <div *ngIf="imageData">
+        <img [src]="imageData" [alt]="">
+      </div>
+    </div> -->
+
+  </form>
+</div>
+<div mat-dialog-actions style="float: right;">
+  <div>
+    <button
+      mat-flat-button
+      (click)="closeModal()">
+      Close
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="addTransaction()">
+      Save
+    </button>
+  </div>
+</div>

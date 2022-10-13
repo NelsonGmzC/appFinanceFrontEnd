@@ -1,0 +1,67 @@
+//color
+@import '../../../styles.scss';
+
+// content of two column for input
+//------>
+.contGpInput {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+@media (max-width: 600px) {
+  .contGpInput {
+    grid-template-columns: 1fr;
+  }
+}
+
+// positio of the dialog
+//------>
+::ng-deep.mat-dialog-container {
+  position: relative;
+}
+
+//opcion dialog
+//------>
+.mat-dialog-title {
+  color: $color_primary;
+}
+.mat-form-field {
+  width: 100%;
+}
+.topModal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  background-color: $color_primary;
+}
+
+//btn dialog
+//------>
+.btnCategory {
+  padding: 7px;
+  width: 45%;
+  margin: 5px;
+  border: none;
+}
+.btnCategory.act {
+  background-color: $color_primary;
+  color: $color_light;
+}
+
+//icon list categories
+//------>
+.fa-light {
+  position: relative;
+  display: inline-grid;
+  top: 4px;
+  width: 37px;
+  height: 37px;
+  text-align: center;
+  align-items: center;
+  font-size: 1.3rem;
+  background-color: #bbb;
+  color: $color_light;
+  border-radius: 50%;
+}

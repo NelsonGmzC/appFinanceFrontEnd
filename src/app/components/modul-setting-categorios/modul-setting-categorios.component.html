@@ -1,0 +1,184 @@
+<div class="contentCategories">
+  <div class="ctFormCategories">
+    <p>
+      <b>Crear nueva categoria</b>
+    </p>
+    <form id="categoryForm" [formGroup]="categoryForm">
+
+      <mat-form-field appearance="outline" [hidden]="true" style="display: none;">
+        <input
+          matInput
+          formControlName="_id">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Icono</mat-label>
+        <mat-select
+          formControlName="icon">
+          <mat-select-trigger class="selectFormCategories">
+            <i class="fa-light" [ngClass]="iconSelecTrigger" [ngStyle]="{'background-color': colorSelecTrigger}"></i>
+          </mat-select-trigger>
+          <mat-option
+            class="selectFormCategories"
+            *ngFor="let icon of json.icon"
+            [value]="icon">
+            <i class="fa-light" [ngClass]="icon" (click)="iconSelecTrigger = icon"></i>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Color</mat-label>
+        <mat-select
+          formControlName="color">
+          <mat-select-trigger class="selectFormCategories">
+            <i [ngStyle]="{'background-color': colorSelecTrigger}">.</i>
+          </mat-select-trigger>
+          <mat-option
+            class="selectFormCategories"
+            *ngFor="let color of json.color"
+            [value]="color">
+            <i [ngStyle]="{'background-color': color}" (click)="colorSelecTrigger = color"></i>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          placeholder="Nombre cat..."
+          formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select
+          formControlName="category">
+          <mat-option
+            *ngFor="let category of categories"
+            [value]="category">
+            {{category}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+    <div class="ctBtnCategoryForm">
+      <button
+        mat-flat-button
+        color="secondary"
+        (click)="resetForm()">
+        Limpiar
+      </button>
+      <button
+        form="categoryForm"
+        mat-flat-button
+        color="primary"
+        (click)="validateForm()">
+        {{textButton}}
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div class="ctListCategoriesEntry">
+    <div
+      cdkDropList
+      (cdkDropListDropped)="drop($event)">
+      <p>
+        <b>Categorias de Ingreso</b>
+      </p>
+      <div
+        *ngFor="let category of getListCategories"
+        cdkDrag
+        [cdkDragDisabled]="dragItem">
+        <div
+          class="ctItemCategory"
+          *ngIf="category.category === 'Ingreso'">
+          <i
+            class="fa-light iconCategory"
+            [ngClass]="category.icon"
+            [ngStyle]="{'background-color': category.color}">
+          </i>
+          <p>
+            {{category.name}}
+          </p>
+          <button
+            class="btn drag"
+            color="warn"
+            (mousedown)="dragItem = false"
+            (mouseup)="dragItem = true"
+            matTooltip="Drag"
+            matTooltipPosition="above">
+            <i class="fa-light fa-arrows-from-line"></i>
+          </button>
+          <button
+            class="btn btn_info_table"
+            color="warn"
+            (click)="editCategory(category)"
+            matTooltip="Delete"
+            matTooltipPosition="above">
+            <i class="fa-light fa-pen-to-square"></i>
+          </button>
+          <button
+            class="btn btn_warn_table"
+            color="warn"
+            (click)="deleteCategory(category._id)"
+            matTooltip="Delete"
+            matTooltipPosition="above">
+            <i class="fa-light fa-trash-can"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      cdkDropList
+      (cdkDropListDropped)="drop($event)">
+      <p>
+        <b>Categorias de Gasto</b>
+      </p>
+      <div
+        *ngFor="let category of getListCategories"
+        cdkDrag
+        [cdkDragDisabled]="dragItem">
+        <div
+          class="ctItemCategory"
+          *ngIf="category.category === 'Gasto'">
+          <i
+            class="fa-light iconCategory"
+            [ngClass]="category.icon"
+            [ngStyle]="{'background-color': category.color}">
+          </i>
+          <p>
+            {{category.name}}
+          </p>
+          <button
+            class="btn drag"
+            color="warn"
+            (mousedown)="dragItem = false"
+            (mouseup)="dragItem = true"
+            matTooltip="Drag"
+            matTooltipPosition="above">
+            <i class="fa-light fa-arrows-from-line"></i>
+          </button>
+          <button
+            class="btn btn_info_table"
+            color="warn"
+            (click)="editCategory(category)"
+            matTooltip="Edit"
+            matTooltipPosition="above">
+            <i class="fa-light fa-pen-to-square"></i>
+          </button>
+          <button
+            class="btn btn_warn_table"
+            color="warn"
+            (click)="deleteCategory(category._id)"
+            matTooltip="Delete"
+            matTooltipPosition="above">
+            <i class="fa-light fa-trash-can"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

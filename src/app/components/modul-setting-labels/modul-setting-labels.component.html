@@ -1,0 +1,71 @@
+<div class="contentCategories">
+  <div class="ctFormCategories">
+    <p>
+      <b>Crear etiqueta</b>
+    </p>
+    <form id="labelForm">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          placeholder="Nombre cat..."
+          [formControl]="labelForm">
+      </mat-form-field>
+
+    </form>
+    <div class="ctBtnCategoryForm">
+      <button
+        mat-flat-button
+        color="secondary"
+        (click)="resetForm()">
+        Limpiar
+      </button>
+      <button
+        form="categoryForm"
+        mat-flat-button
+        color="primary"
+        (click)="validateForm()">
+        {{textButton}}
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div class="ctListCategoriesEntry">
+    <div
+      cdkDropList
+      (cdkDropListDropped)="drop($event)">
+      <p>
+        <b>Lista de etiquetas</b>
+      </p>
+      <div *ngIf="getListLabels !== undefined">
+        <div
+          *ngFor="let label of getListLabels.labels"
+          cdkDrag
+          [cdkDragDisabled]="dragItem"
+          class="ctItemCategory">
+          <p>
+            {{label}}
+          </p>
+          <button
+            class="btn drag"
+            color="warn"
+            (mousedown)="dragItem = false"
+            (mouseup)="dragItem = true"
+            matTooltip="Drag"
+            matTooltipPosition="above">
+            <i class="fa-light fa-arrows-from-line"></i>
+          </button>
+          <button
+            class="btn btn_warn_table"
+            color="warn"
+            (click)="deleteLabel(label)"
+            matTooltip="Delete"
+            matTooltipPosition="above">
+            <i class="fa-light fa-trash-can"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

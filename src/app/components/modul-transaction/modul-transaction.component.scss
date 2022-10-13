@@ -1,0 +1,196 @@
+//color
+@import '../../../styles.scss';
+
+//content table
+.content { 
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+//content btn & filter of the table
+//------>
+.ctHeadTb {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+.ctHeadTb .mat-form-field {
+  margin-bottom: -1.25em;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+//table general
+//------>
+table {
+  width: 100%;
+}
+td, th {
+  width: 25%;
+}
+table td {
+  border: none !important;
+}
+
+//table width column
+//------>
+.mat-column-category {
+  width: 23%;
+}
+.mat-column-date {
+  width: 20%;
+}
+.mat-column-amoint {
+  text-align: end;
+}
+.mat-column-coin p {
+  margin-left: 5px !important;
+}
+.ctCategory {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  grid-gap: 10px;
+  align-items: center;
+}
+
+//table categories icon
+//------>
+.ctCategory i {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  text-align: center;
+  align-items: center;
+  font-size: 1.4rem;
+  background-color: #bbb;
+  color: $color_light;
+  border-radius: 50%;
+}
+
+//input type textarea
+//------>
+.text_overflow {
+  max-width: 150px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//table thead & paginator
+//------>
+.mat-header-cell {
+  background: $color_secondary;
+  border-bottom: none;
+  color: #b0b4b5;
+}
+.mat-paginator {
+  background: $color_secondary;
+}
+
+//style row
+//------>
+tr.mat-row {
+  position: relative;
+  height: 55px;
+  margin: 10px 0px !important;
+}
+tr.mat-row td {
+  border-bottom: 5px solid $color_secondary !important;
+  color: #777777;
+}
+tr.mat-row:hover {
+  outline: 1px solid #776AFF40;
+  z-index: 1;
+}
+
+//style row
+//------>
+.category {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 50px;
+  background-color: #333;
+}
+.category.Gasto {
+  background-color: $color_danger;
+}
+.category.Ingreso {
+  background-color: $color_success;
+}
+
+//style color 'Gasto' or 'Ingreso'
+//------>
+table td.Gasto {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color_danger;
+}
+table td.Ingreso {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color_success;
+}
+
+//style text column label
+//------>
+tr.mat-row td span.label {
+  font-style: italic;
+  background: $color_secondary;
+  padding: 3px 7px;
+  border-radius: 20px;
+  color: #a5a5a5;
+  margin: 3px;
+}
+
+//btn edit & delete
+//------>
+.actionTable {
+  display: grid;
+  grid-template-columns: 40px 40px;
+  grid-gap: 5px;
+}
+tr.mat-row:hover .btn_info_table {
+  background: #9DCEFD30;
+  color: $color_info;
+}
+tr.mat-row:hover .btn_warn_table {
+  background: #FB959C30;
+  color: $color_danger;
+}
+
+//content total of income
+//------>
+.ctTotal {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  overflow: auto;
+  margin-top: 10px;
+}
+.ctTotal > div {
+  width: 670px;
+}
+.ctTotal > div > div {
+  display: inline-block;
+  max-width: 170px;
+  width: 100%;
+  margin: 0 10px;
+  background-color: $color_light;
+  padding: 5px 15px;
+}
+.ctTotal h3 {
+  font-weight: 600;
+  margin: 0;
+}
+.ctTotal .clSpent {
+  color: $color_danger;
+}
+.ctTotal .clEntry {
+  color: $color_success
+}

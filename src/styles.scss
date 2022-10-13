@@ -1,1 +1,113 @@
 /* You can add global styles to this file, and also import other style files */
+
+//color
+$color_primary: #776AFF;
+$color_secondary: #F4F8F9;
+$color_success: #40E8BF;
+$color_danger: #FB959C;
+$color_warn: #FBE387;
+$color_info: #9DCEFD;
+$color_light: #FFFFFF;
+$color_dark: #606060;
+
+//color 
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+p {
+  margin: 0 !important;
+  color: #777;
+}
+img {
+  width: 100%;
+}
+hr {
+  border-top: 1px solid #d3d7d887;
+}
+
+.mat-flat-button {
+  background-color: #F4F8F9;
+}
+.mat-flat-button.mat-primary {
+  background-color: $color_primary;
+}
+
+//style button
+//----->
+.btn {
+  position: relative;
+  border: none;
+  padding: 6px;
+  font-size: 1.1rem;
+  margin: 5px;
+  border-radius: 5px;
+  background: $color_secondary;
+  color: #AEB7B5;
+}
+.btn:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  transition: .3s;
+}
+//color button opcions
+//----->
+.btn_primary {
+  background: $color_primary;
+  color: $color_light;
+}
+.btn_success {
+  background: $color_success;
+  color: $color_light;
+}
+.btn_info {
+  background: $color_info;
+  color: $color_light;
+}
+.btn_danger {
+  background: $color_danger;
+  color: $color_light;
+}
+
+//color texts opcions
+//----->
+.text_primary {
+  color: $color_primary;
+}
+.text_success {
+  color: $color_success;
+}
+.text_info {
+  color: $color_info;
+}
+.text_danger {
+  color: $color_danger;
+}
+
+//style snack
+//----->
+.mat-snack-bar-container {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.mat-simple-snackbar-action button {
+  color: #f4f8f9;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

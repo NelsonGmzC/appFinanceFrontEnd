@@ -1,0 +1,27 @@
+<div class="containerHeaderBg">
+
+  <div class="containerHeader">
+    <div class="ctLogo">
+      <img src="../../../assets/img/logo.png" alt="">
+    </div>
+    <div class="ctModuls">
+      <a
+        routerLink="/transaction"
+        routerLinkActive="act">
+        Transaction
+      </a>
+      <a
+        routerLink="/setting"
+        routerLinkActive="act">
+        Config
+      </a>
+    </div>
+    <div
+      class="ctInfoUser"
+      (click)="authService.logout()">
+      <p>Name User</p>
+      <img src="../../../assets/img/user.png" alt="">
+    </div>
+  </div>
+
+</div>

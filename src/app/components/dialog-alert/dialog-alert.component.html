@@ -1,0 +1,31 @@
+<span
+  class="topModal"
+  [ngClass]="data.type">
+</span>
+<h1
+  mat-dialog-title
+  [ngClass]="data.color">
+  <i
+    class="fa-light fa-circle-exclamation"
+    [ngClass]="data.icon">
+  </i>
+  <br>
+  {{data.title}}
+</h1>
+<div mat-dialog-content>
+  <p>{{data.message}}</p>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    mat-dialog-close>
+    No
+  </button>
+  <button
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+    (click)="ref()">
+    Ok
+  </button>
+</div>
