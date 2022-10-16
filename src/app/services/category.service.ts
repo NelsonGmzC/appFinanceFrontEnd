@@ -7,7 +7,8 @@ import { Category } from '../models/transaction';
 })
 export class CategoryService {
 
-  URL_API = 'http://localhost:4001/api/transactions/settings/categories'
+  //URL_API = 'http://localhost:4001/api/transactions/settings/categories'
+  URL_API = 'https://app-finance.adaptable.app/api/transactions/settings/categories'
   start = new Date(Date.now());
 
   categories : Category[] | undefined;

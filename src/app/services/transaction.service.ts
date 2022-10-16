@@ -7,7 +7,8 @@ import { Transaction } from '../models/transaction';
 })
 export class TransactionService {
 
-  URL_API = 'http://localhost:4001/api/transactions'
+  //URL_API = 'http://localhost:4001/api/transactions'
+  URL_API = 'https://app-finance.adaptable.app/api/transactions'
   start = new Date(Date.now());
 
   transactions : Transaction[] | undefined;

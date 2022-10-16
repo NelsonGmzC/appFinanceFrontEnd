@@ -7,7 +7,8 @@ import { Label } from '../models/transaction';
 })
 export class LabelService {
 
-  URL_API = 'http://localhost:4001/api/transactions/settings/labels'
+  //URL_API = 'http://localhost:4001/api/transactions/settings/labels'
+  URL_API = 'https://app-finance.adaptable.app/api/transactions/settings/labels'
   start = new Date(Date.now());
 
   label : Label[] | undefined;
