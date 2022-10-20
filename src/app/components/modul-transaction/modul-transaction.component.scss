@@ -13,6 +13,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  margin-bottom: 20px;
 }
 .ctHeadTb .mat-form-field {
   margin-bottom: -1.25em;
@@ -117,10 +118,10 @@ tr.mat-row:hover {
   height: 50px;
   background-color: #333;
 }
-.category.Gasto {
+.category.cl0 {
   background-color: $color_danger;
 }
-.category.Ingreso {
+.category.cl1 {
   background-color: $color_success;
 }
 

@@ -7,6 +7,7 @@ import { ModulSettingComponent } from './components/modul-setting/modul-setting.
 import { ModulTransactionComponent } from './components/modul-transaction/modul-transaction.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthGuard } from './auth.guard';
+import { ModulComponent } from './components/modul/modul.component';
 
 const routes: Routes = [
   {
@@ -14,29 +15,36 @@ const routes: Routes = [
     component: ModulLoginComponent
   },
   {
-    path: 'transaction',
-    component: ModulTransactionComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'setting',
-    component: ModulSettingComponent,
+    path: 'app',
+    component: ModulComponent,
     canActivate: [AuthGuard],
     children:[
       {
-        path: 'categories',
-        component: ModulSettingCategoriosComponent,
+        path: 'transaction',
+        component: ModulTransactionComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'labels',
-        component: ModulSettingLabelsComponent,
-        canActivate: [AuthGuard]
+        path: 'setting',
+        component: ModulSettingComponent,
+        canActivate: [AuthGuard],
+        children:[
+          {
+            path: 'categories',
+            component: ModulSettingCategoriosComponent,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'labels',
+            component: ModulSettingLabelsComponent,
+            canActivate: [AuthGuard]
+          }
+        ]
       }
     ]
   },
-  {path: '', pathMatch: 'full', redirectTo: 'transaction'},
-  {path: '**', pathMatch: 'full', redirectTo: 'transaction'}
+  {path: '', pathMatch: 'full', redirectTo: 'app/transaction'},
+  {path: '**', pathMatch: 'full', redirectTo: 'app/transaction'}
 ];
 
 @NgModule({

@@ -1,7 +1,9 @@
 <span class="topModal"></span>
-<h1 mat-dialog-title>Form Transaction</h1>
+<h1 mat-dialog-title>
+  {{ "dialogTransaction.title" | transloco }}
+</h1>
 <div mat-dialog-content>
-  <form [formGroup]="transactionForm">
+  <form [formGroup]="transactionForm" id="transactionForm">
 
     <!-- <mat-form-field appearance="outline"> -->
     <mat-form-field appearance="outline" [hidden]="true" style="display: none;">
@@ -12,7 +14,9 @@
 
     <div class="contGpInput">
       <mat-form-field appearance="outline">
-        <mat-label>Category</mat-label>
+        <mat-label>
+          {{ "modulTransactionTable.category" | transloco }}
+        </mat-label>
         <mat-select
           cdkFocusInitial
           formControlName="categoryOpc">
@@ -27,20 +31,20 @@
           </mat-select-trigger>
           <button
             class="btnCategory"
-            (click)="category = 'Gasto'"
-            [ngClass]="{'act': category === 'Gasto'}">
-            Gasto
+            (click)="category = '0'"
+            [ngClass]="{'act': category === '0'}">
+            {{ "modulTransaction.spent" | transloco }}
           </button>
           <button
             class="btnCategory"
-            (click)="category = 'Ingreso'" 
-            [ngClass]="{'act': category === 'Ingreso'}">
-            Ingreso
+            (click)="category = '1'" 
+            [ngClass]="{'act': category === '1'}">
+            {{ "modulTransaction.entry" | transloco }}
           </button>
-          <div *ngIf="category === 'Gasto'">
+          <div *ngIf="category === '0'">
             <div *ngFor="let listSpent of getListCategories">
               <mat-option
-                *ngIf="listSpent.category === 'Gasto'"
+                *ngIf="listSpent.category === '0'"
                 (click)="iconSelecTrigger = listSpent.icon; colorSelecTrigger = listSpent.color; textSelecTrigger = listSpent.name;"
                 [value]="listSpent.name">
                 <i class="fa-light" [ngClass]="listSpent.icon" [ngStyle]="{'background-color': listSpent.color}"></i>
@@ -48,10 +52,10 @@
               </mat-option>
             </div>
           </div>
-          <div *ngIf="category === 'Ingreso'">
+          <div *ngIf="category === '1'">
             <div *ngFor="let listEntry of getListCategories">
               <mat-option
-                *ngIf="listEntry.category === 'Ingreso'"
+                *ngIf="listEntry.category === '1'"
                 (click)="iconSelecTrigger = listEntry.icon; colorSelecTrigger = listEntry.color; textSelecTrigger = listEntry.name;"
                 [value]="listEntry.name">
                 <i class="fa-light" [ngClass]="listEntry.icon" [ngStyle]="{'background-color': listEntry.color}"></i>
@@ -59,9 +63,20 @@
               </mat-option>
             </div>
           </div>
+          <hr>
+          <p
+            class="hyperlink"
+            routerLink="/app/setting/categories"
+            routerLinkActive="act"
+            (click)="closeModal()">
+            {{ "modulTransaction.newCategory" | transloco }}
+          </p>
         </mat-select>
-        <mat-error *ngIf="transactionForm.get('categoryOpc')?.errors?.['required']">Error</mat-error>
+        <mat-error *ngIf="transactionForm.get('categoryOpc')?.errors?.['required']">
+          {{ "errorForm.category" | transloco }}
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label>MM/DD/YYYY</mat-label>
         <input
@@ -71,21 +86,30 @@
           placeholder="MM/DD/YYYY">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="transactionForm.get('date')?.errors?.['required']">Error</mat-error>
+        <mat-error *ngIf="transactionForm.get('date')?.errors?.['required']">
+          {{ "errorForm.date" | transloco }}
+        </mat-error>
+        <mat-error *ngIf="transactionForm.get('date')?.errors?.['date']">
+          {{ "errorForm.date" | transloco }}
+        </mat-error>
       </mat-form-field>
     </div>
 
     <mat-form-field appearance="outline">
-      <mat-label>Notes</mat-label>
+      <mat-label>
+        {{ "modulTransactionTable.notes" | transloco }}
+      </mat-label>
       <textarea 
         matInput
         formControlName="notes"
-        placeholder="notes...">
+        [placeholder]="'modulTransactionTable.notes' | transloco">
       </textarea>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Labels</mat-label>
+      <mat-label>
+        {{ "modulTransactionTable.label" | transloco }}
+      </mat-label>
       <mat-select
         formControlName="labels"
         multiple>
@@ -94,33 +118,22 @@
           [value]="toppingsLabels">
           {{toppingsLabels}}
         </mat-option>
+        <hr>
+        <p
+          class="hyperlink"
+          routerLink="/app/setting/labels"
+          routerLinkActive="act"
+          (click)="closeModal()">
+          {{ "modulTransaction.newLabel" | transloco }}
+        </p>
       </mat-select>
     </mat-form-field>
 
-    <!-- <mat-form-field appearance="outline">
-      <mat-label>Labels</mat-label>
-      <mat-select
-        formControlName="labels"
-        (selectionChange)=" showSelectValue($event.value)"
-        multiple>
-        <mat-select-trigger>
-          {{toppingsLabels[0] || ''}}
-          <span *ngIf="(toppingsLabels?.length || 0) > 1" class="example-additional-selection">
-            (+{{(toppingsLabels.length || 0) - 1}} {{toppingsLabels.length === 2 ? 'other' : 'others'}})
-          </span>
-        </mat-select-trigger>
-        <mat-option
-          *ngFor="let toppingsLabels of toppingListLabels"
-          [value]="toppingsLabels"
-          >
-          {{toppingsLabels}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field> -->
-
     <div class="contGpInput">
       <mat-form-field appearance="outline">
-        <mat-label>Amount</mat-label>
+        <mat-label>
+          {{ "modulTransactionTable.amount" | transloco }}
+        </mat-label>
         <input
           matInput
           type="number"
@@ -129,11 +142,15 @@
           placeholder="0">
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
-        <mat-error *ngIf="transactionForm.get('amoint')?.errors?.['required']">Error</mat-error>
+        <mat-error *ngIf="transactionForm.get('amoint')?.errors?.['required']">
+          {{ "errorForm.amount" | transloco }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Coin</mat-label>
+        <mat-label>
+          {{ "modulTransactionTable.coin" | transloco }}
+        </mat-label>
         <mat-select
           formControlName="coin">
           <mat-option
@@ -142,6 +159,9 @@
             {{coin.viewValue}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="transactionForm.get('coin')?.errors?.['required']">
+          {{ "errorForm.coin" | transloco }}
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -162,13 +182,14 @@
     <button
       mat-flat-button
       (click)="closeModal()">
-      Close
+      {{ "button.close" | transloco }}
     </button>
     <button
       mat-flat-button
+      form="transactionForm"
       color="primary"
       (click)="addTransaction()">
-      Save
+      {{ "button.save" | transloco }}
     </button>
   </div>
 </div>

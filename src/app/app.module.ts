@@ -33,6 +33,9 @@ import { ModulSettingComponent } from './components/modul-setting/modul-setting.
 import { ModulLoginComponent } from './components/modul-login/modul-login.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { TranslocoRootModule } from './transloco-root.module';
+import { SelectLanguageComponent } from './components/select-language/select-language.component';
+import { ModulComponent } from './components/modul/modul.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     DialogAlertComponent,
     ModulSettingLabelsComponent,
     ModulSettingComponent,
-    ModulLoginComponent
+    ModulLoginComponent,
+    SelectLanguageComponent,
+    ModulComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     MatButtonModule,
     MatTooltipModule,
     DragDropModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    TranslocoRootModule
   ],
   providers: [
     MatDatepickerModule,

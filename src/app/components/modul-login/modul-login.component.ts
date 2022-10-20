@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { TranslocoRootModule } from 'src/app/transloco-root.module';
 
 @Component({
   selector: 'app-modul-login',
@@ -39,10 +40,11 @@ export class ModulLoginComponent implements OnInit {
           this.token = res;
           localStorage.setItem('token', this.token.token);
           this.router.navigate(['/transaction']);
-          // this.loginForm.reset();
-          // this.snackMessage('Registro actualizado!', 'btn_success');
         },
-        err => console.log(err)
+        err => {
+          this.snackMessage('Usuario o contraseña incorrectos!', 'btn_danger');
+          console.log(err)
+        }
       )
     }
   }
@@ -50,7 +52,7 @@ export class ModulLoginComponent implements OnInit {
   //function snack
   snackMessage(message: string, type: string) {
     this._snackBar.open(message, 'Ok', {
-      duration: 3000,
+      duration: 6000,
       panelClass: [type],
       verticalPosition: 'top',
       horizontalPosition: 'right'

@@ -8,6 +8,7 @@ import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 import { MatDialog } from '@angular/material/dialog';
 
 import jsonCategoriesIconColor from 'src/assets/categoriesIconColor.json';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-modul-setting-categorios',
@@ -17,17 +18,11 @@ import jsonCategoriesIconColor from 'src/assets/categoriesIconColor.json';
 export class ModulSettingCategoriosComponent implements OnInit {
 
   categoryForm! : FormGroup;
-  typeCategory : number = 1;
   iconSelecTrigger : any;
   colorSelecTrigger : any;
   json : any = jsonCategoriesIconColor;
-  categories : string[] = [
-    'Ingreso',
-    'Gasto'
-  ];
   getListCategories!: any;
   dragItem : boolean = true;
-  textButton : string = 'Crear categoria'
   token = this.parseJwt(localStorage.getItem('token'));
 
   constructor(
@@ -35,6 +30,7 @@ export class ModulSettingCategoriosComponent implements OnInit {
     public categoryService: CategoryService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
+    private translocoService: TranslocoService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +39,7 @@ export class ModulSettingCategoriosComponent implements OnInit {
     //validation of form
     this.categoryForm = this.formBuilder.group({
       _id : [''],
-      category: [this.typeCategory === 1 ? 'Gasto' : 'Ingreso'],
+      category: ['', Validators.required],
       icon: ['', Validators.required],
       color: ['', Validators.required],
       name: ['', Validators.required]
@@ -76,7 +72,7 @@ export class ModulSettingCategoriosComponent implements OnInit {
         res => {
           this.getCategories();
           this.categoryForm.reset();
-          this.snackMessage('Registro actualizado!', 'btn_success');
+          this.snackMessage(this.translocoSelect("snackMessage.update")!, 'btn_success');
         },
         err => console.log(err)
       )
@@ -86,7 +82,7 @@ export class ModulSettingCategoriosComponent implements OnInit {
         res => {
           this.getCategories();
           this.categoryForm.reset();
-          this.snackMessage('Registro creado!', 'btn_success');
+          this.snackMessage(this.translocoSelect("snackMessage.create")!, 'btn_success');
         },
         err => console.log(err)
       )
@@ -95,7 +91,6 @@ export class ModulSettingCategoriosComponent implements OnInit {
 
   //edit category selected by id
   editCategory(form: Category) {
-    this.textButton = 'Editar categoria'
     this.iconSelecTrigger = form.icon;
     this.colorSelecTrigger = form.color;
     this.categoryForm.controls['_id'].setValue(form._id);
@@ -110,8 +105,8 @@ export class ModulSettingCategoriosComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAlertComponent, {
       width: '300px',
       data: {
-        title: 'Delete',
-        message: 'Are you sure you want to delete it?',
+        title: this.translocoSelect("dialog.title.delete")!,
+        message: this.translocoSelect("dialog.message.delete")!,
         type: 'btn_danger',
         color: 'text_danger',
         icon: 'fa-circle-exclamation'
@@ -123,7 +118,7 @@ export class ModulSettingCategoriosComponent implements OnInit {
           this.categoryService.deleteCategory(id).subscribe(
             res => {
               this.getCategories();
-              this.snackMessage('Registro Eliminado!', 'btn_danger');
+              this.snackMessage(this.translocoSelect("snackMessage.delete")!, 'btn_danger');
             },
             err => console.log(err)
           )
@@ -145,7 +140,6 @@ export class ModulSettingCategoriosComponent implements OnInit {
   //reset form categories
   resetForm() {
     this.categoryForm.reset();
-    this.textButton = 'Crear categoria'
   }
 
   //drag & drop list categories
@@ -176,5 +170,14 @@ export class ModulSettingCategoriosComponent implements OnInit {
 
     return JSON.parse(jsonPayload);
   };
+
+  //function that return transloco
+  translocoSelect(valueKey: string) {
+    let respon;
+    this.translocoService.selectTranslate(valueKey).subscribe(value => {
+      respon = value;
+    })
+    return respon;
+  }
 
 }

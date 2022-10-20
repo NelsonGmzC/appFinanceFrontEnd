@@ -1,10 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { TransactionService } from '../../services/transaction.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Category, select, Transaction } from 'src/app/models/transaction';
-//angular material
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { select, Transaction } from 'src/app/models/transaction';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable, Subscriber } from 'rxjs';
 import { CategoryService } from 'src/app/services/category.service';
 import { LabelService } from 'src/app/services/label.service';
 
@@ -24,7 +21,25 @@ export class ModulTransactionDialogFormComponent implements OnInit {
     {value: 'COP', viewValue: 'COP'},
     {value: 'US', viewValue: 'US'}
   ];
-  category : string = "Gasto";
+  categoriesOptional = [
+    {
+      category: "Gasto",
+      color: "#fab9bf",
+      icon: "fa-arrow-up",
+      name: "Gasto"
+    },
+    {
+      category: "Ingreso",
+      color: "#a8d8ba",
+      icon: "fa-arrow-down",
+      name: "Ingreso"
+    }
+  ];
+  labelOptional: string[] = [
+    "Gasto",
+    "Ingreso"
+  ]
+  category : string = "0";
   getListCategories! : any;
   iconSelecTrigger! : string;
   colorSelecTrigger! : string;
@@ -84,9 +99,11 @@ export class ModulTransactionDialogFormComponent implements OnInit {
     this.labelService.getLabels(this.token._id).subscribe(
       res =>{
         if (res.length !== 0) {
-          this.toppingListLabels = res[0].labels;
-        } else {
-          this.toppingListLabels = [];
+          if (res[0].labels.length !== 0) {
+            this.toppingListLabels = res[0].labels;
+          } else {
+            this.toppingListLabels = this.labelOptional;
+          }
         }
       },
       err => console.log(err)
@@ -97,15 +114,20 @@ export class ModulTransactionDialogFormComponent implements OnInit {
   getCategories() {
     this.categoryService.getCategories(this.token._id).subscribe(
       res =>{
-        this.getListCategories = res;
+        if (res.length !== 0) {
+          this.getListCategories = res;
+        } else {
+          this.getListCategories = this.categoriesOptional;
+        }
       },
-      err => console.log(this.getListCategories)
+      err => console.log(err)
     )
   }
 
   //submit response at modul-transaction
   addTransaction() {
     if (this.transactionForm.valid) {
+      this.transactionForm.value.category = this.category;
       this.dialogRef.close(this.transactionForm.value);
     }
   }
@@ -129,39 +151,5 @@ export class ModulTransactionDialogFormComponent implements OnInit {
 
     return JSON.parse(jsonPayload);
   };
-
-
-
-
-  // myimage!: Observable<any>;
-
-  // onFileSelect(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files![0];
-  //   this.convertToBase64(file);
-  // }
-
-  // convertToBase64(file: File) {
-  //   this.myimage = new Observable((subscriber: Subscriber<any>) => {
-  //     this.readFile(file, subscriber);
-  //   });
-  //   this.myimage.subscribe((d) => {
-  //     this.imageData = d.toString();
-  //   })
-  // }
-
-  // readFile(file: File, subscriber: Subscriber<any>) {
-  //   const filereader = new FileReader();
-  //   filereader.readAsDataURL(file);
-
-  //   filereader.onload = () => {
-  //     this.imageData = filereader.result as string;
-  //     subscriber.next(filereader.result);
-  //     subscriber.complete();
-  //   };
-  //   filereader.onerror = (error) => {
-  //     subscriber.error(error);
-  //     subscriber.complete();
-  //   };
-  // }
 
 }

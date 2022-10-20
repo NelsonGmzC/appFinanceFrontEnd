@@ -1,0 +1,90 @@
+{
+  "login": {
+    "login": "Acceso",
+    "signin": "Iniciar sesión"
+  },
+  "form": {
+    "filter": "Filtro de búsqueda...",
+    "name": "Nombre",
+    "email": "Correo electronico",
+    "password": "Contraseña",
+    "icon": "Icono",
+    "color": "Color"
+  },
+  "errorForm": {
+    "name": "Nombre incorrecto!",
+    "email": "Correo incorrecto!",
+    "password": "Contraseña incorrecta!",
+    "category": "Categoría incorrecta!",
+    "date": "Fecha incorrecta!",
+    "amount": "Monto incorrecto!",
+    "coin": "Moneda incorrecta!",
+    "icon": "Icono incorrecto!",
+    "color": "Color incorrecto!"
+  },
+  "headerTop": {
+    "transactions": "Transacciónes",
+    "setting": "Ajustes",
+    "signOff": "Cerrar sesión"
+  },
+  "button": {
+    "newRecord": "Nuevo registro",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "clear": "Limpiar"
+  },
+  "tooltip": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "drag": "Arrastrar"
+  },
+  "snackMessage": {
+    "update": "Registro actualizado!",
+    "create": "Registro creado!",
+    "delete": "Registro Eliminado!"
+  },
+  "dialog": {
+    "title": {
+      "delete": "Eliminar"
+    },
+    "message": {
+      "delete": "¿Está seguro de que desea eliminarlo?"
+    },
+    "button": {
+      "no": "No",
+      "yes": "Sí"
+    }
+  },
+  "modulTransaction": {
+    "currentBalance": "Saldo Actual",
+    "totalExpense": "Total de Gasto",
+    "totalIncome": "Total de Ingreso",
+    "spent": "Gasto",
+    "entry": "Ingreso",
+    "newLabel": "Añadir nueva etiqueta",
+    "newCategory": "Añadir nueva categoría"
+  },
+  "modulTransactionTable": {
+    "category": "Categoría",
+    "categories": "Categorías",
+    "date": "Fecha",
+    "notes": "Notas",
+    "label": "Etiquetas",
+    "amount": "Monto",
+    "coin": "Moneda",
+    "action": "Acción",
+    "notFilter": "No hay datos que coincidan con el filtro"
+  },
+  "dialogTransaction": {
+    "title": "Formulario de transacción"
+  },
+  "modulCategory": {
+    "title": "Crear nueva categoría",
+    "titleSpent": "Categorías de Gasto",
+    "titleEntry": "Categorias de Ingreso"
+  },
+  "modulLabel": {
+    "title": "Crear etiqueta",
+    "titleList": "Lista de etiquetas"
+  }
+}

@@ -1,12 +1,16 @@
 <div class="contentCategories">
   <div class="ctFormCategories">
     <p>
-      <b>Crear etiqueta</b>
+      <b>
+        {{ "modulLabel.title" | transloco }}
+      </b>
     </p>
     <form id="labelForm">
 
       <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
+        <mat-label>
+          {{ "form.name" | transloco }}
+        </mat-label>
         <input
           matInput
           placeholder="Nombre cat..."
@@ -19,14 +23,14 @@
         mat-flat-button
         color="secondary"
         (click)="resetForm()">
-        Limpiar
+        {{ "button.clear" | transloco }}
       </button>
       <button
         form="categoryForm"
         mat-flat-button
         color="primary"
         (click)="validateForm()">
-        {{textButton}}
+        {{ "button.save" | transloco }}
       </button>
     </div>
   </div>
@@ -36,7 +40,9 @@
       cdkDropList
       (cdkDropListDropped)="drop($event)">
       <p>
-        <b>Lista de etiquetas</b>
+        <b>
+          {{ "modulLabel.titleList" | transloco }}
+        </b>
       </p>
       <div *ngIf="getListLabels !== undefined">
         <div

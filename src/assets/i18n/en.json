@@ -1,0 +1,90 @@
+{
+  "login": {
+    "login": "Login",
+    "signin": "Sing In"
+  },
+  "form": {
+    "filter": "Search filter...",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "icon": "Icon",
+    "color": "Color"
+  },
+  "errorForm": {
+    "name": "Incorrect name!",
+    "email": "Incorrect email!",
+    "password": "Incorrect password!",
+    "category": "Incorrect category!",
+    "date": "Incorrect date!",
+    "amount": "Incorrect amount!",
+    "coin": "Incorrect coin!",
+    "icon": "Incorrect icon!",
+    "color": "Incorrect color!"
+  },
+  "headerTop": {
+    "transactions": "Transactions",
+    "setting": "Setting",
+    "signOff": "Sign Off"
+  },
+  "button": {
+    "newRecord": "New record",
+    "save": "Save",
+    "close": "Close",
+    "clear": "Clear"
+  },
+  "tooltip": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "drag": "Drag"
+  },
+  "snackMessage": {
+    "update": "Updated record!",
+    "create": "Record created!",
+    "delete": "registro delete!"
+  },
+  "dialog": {
+    "title": {
+      "delete": "Delete"
+    },
+    "message": {
+      "delete": "Are you sure you want to delete it?"
+    },
+    "button": {
+      "no": "No",
+      "yes": "Yes"
+    }
+  },
+  "modulTransaction": {
+    "currentBalance": "Current Balance",
+    "totalExpense": "Total Expense",
+    "totalIncome": "Total Income",
+    "spent": "Spent",
+    "entry": "Entry",
+    "newLabel": "Add new label",
+    "newCategory": "Add new category"
+  },
+  "modulTransactionTable": {
+    "category": "Category",
+    "categories": "Categories",
+    "date": "Date",
+    "notes": "Notes",
+    "label": "Labels",
+    "amount": "Amount",
+    "coin": "Coin",
+    "action": "Action",
+    "notFilter": "No data matching the filter"
+  },
+  "dialogTransaction": {
+    "title": "Transaction form"
+  },
+  "modulCategory": {
+    "title": "Create new category",
+    "titleSpent": "Expense Categories",
+    "titleEntry": "Income Categories"
+  },
+  "modulLabel": {
+    "title": "Create label",
+    "titleList": "Label list"
+  }
+}

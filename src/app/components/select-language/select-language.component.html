@@ -1,0 +1,16 @@
+<div class="ctInputLanguage">
+  <mat-form-field appearance="outline">
+    <mat-select [(value)]="languageStorage">
+      <mat-select-trigger>
+        <img [src]="img"/>
+      </mat-select-trigger>
+      <mat-option
+        *ngFor="let language of languages"
+        [value]="language.value"
+        (click)="changeLanguage(language.value)">
+        <img [src]="img2 + language.value + '.png'"/>
+        {{language.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

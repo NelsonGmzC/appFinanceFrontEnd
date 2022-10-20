@@ -1,7 +1,9 @@
 <div class="contentCategories">
   <div class="ctFormCategories">
     <p>
-      <b>Crear nueva categoria</b>
+      <b>
+        {{ "modulCategory.title" | transloco }}
+      </b>
     </p>
     <form id="categoryForm" [formGroup]="categoryForm">
 
@@ -12,7 +14,9 @@
       </mat-form-field>
       
       <mat-form-field appearance="outline">
-        <mat-label>Icono</mat-label>
+        <mat-label>
+          {{ "form.icon" | transloco }}
+        </mat-label>
         <mat-select
           formControlName="icon">
           <mat-select-trigger class="selectFormCategories">
@@ -25,10 +29,15 @@
             <i class="fa-light" [ngClass]="icon" (click)="iconSelecTrigger = icon"></i>
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="categoryForm.get('icon')?.errors?.['required']">
+          {{ "errorForm.icon" | transloco }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Color</mat-label>
+        <mat-label>
+          {{ "form.color" | transloco }}
+        </mat-label>
         <mat-select
           formControlName="color">
           <mat-select-trigger class="selectFormCategories">
@@ -41,26 +50,40 @@
             <i [ngStyle]="{'background-color': color}" (click)="colorSelecTrigger = color"></i>
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="categoryForm.get('color')?.errors?.['required']">
+          {{ "errorForm.color" | transloco }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
+        <mat-label>
+          {{ "form.name" | transloco }}
+        </mat-label>
         <input
           matInput
           placeholder="Nombre cat..."
           formControlName="name">
+          <mat-error *ngIf="categoryForm.get('name')?.errors?.['required']">
+            {{ "errorForm.name" | transloco }}
+          </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Categoria</mat-label>
+        <mat-label>
+          {{ "modulTransactionTable.category" | transloco }}
+        </mat-label>
         <mat-select
-          formControlName="category">
-          <mat-option
-            *ngFor="let category of categories"
-            [value]="category">
-            {{category}}
+          formControlName="category" value="">
+          <mat-option value="0">
+            {{ "modulTransaction.spent" | transloco }}
+          </mat-option>
+          <mat-option value="1">
+            {{ "modulTransaction.entry" | transloco }}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="categoryForm.get('category')?.errors?.['required']">
+          {{ "errorForm.category" | transloco }}
+        </mat-error>
       </mat-form-field>
 
     </form>
@@ -69,14 +92,14 @@
         mat-flat-button
         color="secondary"
         (click)="resetForm()">
-        Limpiar
+        {{ "button.clear" | transloco }}
       </button>
       <button
         form="categoryForm"
         mat-flat-button
         color="primary"
         (click)="validateForm()">
-        {{textButton}}
+        {{ "button.save" | transloco }}
       </button>
     </div>
   </div>
@@ -86,7 +109,9 @@
       cdkDropList
       (cdkDropListDropped)="drop($event)">
       <p>
-        <b>Categorias de Ingreso</b>
+        <b>
+          {{ "modulCategory.titleEntry" | transloco }}
+        </b>
       </p>
       <div
         *ngFor="let category of getListCategories"
@@ -94,7 +119,7 @@
         [cdkDragDisabled]="dragItem">
         <div
           class="ctItemCategory"
-          *ngIf="category.category === 'Ingreso'">
+          *ngIf="category.category === '1'">
           <i
             class="fa-light iconCategory"
             [ngClass]="category.icon"
@@ -108,7 +133,7 @@
             color="warn"
             (mousedown)="dragItem = false"
             (mouseup)="dragItem = true"
-            matTooltip="Drag"
+            [matTooltip]="'tooltip.drag' | transloco"
             matTooltipPosition="above">
             <i class="fa-light fa-arrows-from-line"></i>
           </button>
@@ -116,7 +141,7 @@
             class="btn btn_info_table"
             color="warn"
             (click)="editCategory(category)"
-            matTooltip="Delete"
+            [matTooltip]="'tooltip.edit' | transloco"
             matTooltipPosition="above">
             <i class="fa-light fa-pen-to-square"></i>
           </button>
@@ -124,7 +149,7 @@
             class="btn btn_warn_table"
             color="warn"
             (click)="deleteCategory(category._id)"
-            matTooltip="Delete"
+            [matTooltip]="'tooltip.delete' | transloco"
             matTooltipPosition="above">
             <i class="fa-light fa-trash-can"></i>
           </button>
@@ -135,7 +160,9 @@
       cdkDropList
       (cdkDropListDropped)="drop($event)">
       <p>
-        <b>Categorias de Gasto</b>
+        <b>
+          {{ "modulCategory.titleSpent" | transloco }}
+        </b>
       </p>
       <div
         *ngFor="let category of getListCategories"
@@ -143,7 +170,7 @@
         [cdkDragDisabled]="dragItem">
         <div
           class="ctItemCategory"
-          *ngIf="category.category === 'Gasto'">
+          *ngIf="category.category === '0'">
           <i
             class="fa-light iconCategory"
             [ngClass]="category.icon"
@@ -157,7 +184,7 @@
             color="warn"
             (mousedown)="dragItem = false"
             (mouseup)="dragItem = true"
-            matTooltip="Drag"
+            [matTooltip]="'tooltip.drag' | transloco"
             matTooltipPosition="above">
             <i class="fa-light fa-arrows-from-line"></i>
           </button>
@@ -165,7 +192,7 @@
             class="btn btn_info_table"
             color="warn"
             (click)="editCategory(category)"
-            matTooltip="Edit"
+            [matTooltip]="'tooltip.edit' | transloco"
             matTooltipPosition="above">
             <i class="fa-light fa-pen-to-square"></i>
           </button>
@@ -173,7 +200,7 @@
             class="btn btn_warn_table"
             color="warn"
             (click)="deleteCategory(category._id)"
-            matTooltip="Delete"
+            [matTooltip]="'tooltip.delete' | transloco"
             matTooltipPosition="above">
             <i class="fa-light fa-trash-can"></i>
           </button>

@@ -65,3 +65,15 @@
   color: $color_light;
   border-radius: 50%;
 }
+
+//href select
+.hyperlink {
+  text-align: center;
+  padding: 5px;
+  text-decoration: underline;
+  color: $color_primary;
+  cursor: pointer;
+}
+.hyperlink:hover {
+  background: $color_secondary;
+}

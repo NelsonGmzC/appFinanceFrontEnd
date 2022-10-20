@@ -6,21 +6,25 @@
     </div>
     <div class="ctModuls">
       <a
-        routerLink="/transaction"
+        routerLink="/app/transaction"
         routerLinkActive="act">
-        Transaction
+        {{ "headerTop.transactions" | transloco }}
       </a>
       <a
-        routerLink="/setting"
+        routerLink="/app/setting"
         routerLinkActive="act">
-        Config
+        {{ "headerTop.setting" | transloco }}
       </a>
     </div>
-    <div
-      class="ctInfoUser"
-      (click)="authService.logout()">
-      <p>Name User</p>
-      <img src="../../../assets/img/user.png" alt="">
+    <div class="ctInfoUser">
+      <app-select-language></app-select-language>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="authService.logout()">
+        {{ "headerTop.signOff" | transloco }}
+      </button>
+      <!-- <img src="../../../assets/img/user.png" alt=""> -->
     </div>
   </div>
 

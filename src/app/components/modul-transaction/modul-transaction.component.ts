@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ModulTransactionDialogFormComponent } from '../modul-transaction-dialog-form/modul-transaction-dialog-form.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-modul-transaction',
@@ -38,18 +39,19 @@ export class ModulTransactionComponent implements OnInit {
   total : number = 0;
   getListCategories! : any;
   token = this.parseJwt(localStorage.getItem('token'));
+  messageTransloco!: string;
 
   constructor(
     public transactionService: TransactionService,
     public categoryService: CategoryService,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
     this.getTransactions();
-    this.getCategories();
-    console.log(this.parseJwt(localStorage.getItem('token')));
+    this.getCategories();    
   }
 
   //total of spent & entry
@@ -96,7 +98,7 @@ export class ModulTransactionComponent implements OnInit {
       this.transactionService.updateTransaction(form).subscribe(
         res => {
           this.getTransactions();
-          this.snackMessage('Registro actualizado!', 'btn_success');
+          this.snackMessage(this.translocoSelect('snackMessage.update')!, 'btn_success');
         },
         err => console.log(err)
       )
@@ -105,7 +107,7 @@ export class ModulTransactionComponent implements OnInit {
       this.transactionService.createTransaction(form).subscribe(
         res => {
           this.getTransactions();
-          this.snackMessage('Registro creado!', 'btn_success');
+          this.snackMessage(this.translocoSelect('snackMessage.create')!, 'btn_success');
         },
         err => console.log(err)
       )
@@ -130,8 +132,8 @@ export class ModulTransactionComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAlertComponent, {
       width: '300px',
       data: {
-        title: 'Delete',
-        message: 'Are you sure you want to delete it?',
+        title: this.translocoSelect('dialog.title.delete'),
+        message: this.translocoSelect('dialog.message.delete'),
         type: 'btn_danger',
         color: 'text_danger',
         icon: 'fa-circle-exclamation'
@@ -143,7 +145,7 @@ export class ModulTransactionComponent implements OnInit {
           this.transactionService.deleteTransaction(id).subscribe(
             res => {
               this.getTransactions();
-              this.snackMessage('Registro Eliminado!', 'btn_danger');
+              this.snackMessage(this.translocoSelect('snackMessage.delete')!, 'btn_danger');
             },
             err => console.log(err)
           )
@@ -181,6 +183,15 @@ export class ModulTransactionComponent implements OnInit {
       verticalPosition: 'top',
       horizontalPosition: 'right'
     });
+  }
+
+  //function that return transloco
+  translocoSelect(valueKey: string) {
+    let respon;
+    this.translocoService.selectTranslate(valueKey).subscribe(value => {
+      respon = value;
+    })
+    return respon;
   }
 
   //decrypt token user id

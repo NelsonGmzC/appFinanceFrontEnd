@@ -7,6 +7,11 @@
   display: flex;
   align-items: center;
 }
+.login h1 {
+  color: $color_primary;
+  text-align: center;
+  margin-top: 10px;
+}
 
 .contentLogin {
   max-width: 300px;
@@ -19,4 +24,16 @@
 
 .formLogin form {
   display: grid;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+app-select-language {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }

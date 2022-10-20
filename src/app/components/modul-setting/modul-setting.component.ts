@@ -13,7 +13,7 @@ export class ModulSettingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.router.navigate(['/setting/categories']);
+    this.router.navigate(['/app/setting/categories']);
   }
 
 }

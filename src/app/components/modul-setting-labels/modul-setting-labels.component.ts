@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslocoService } from '@ngneat/transloco';
 import { Label } from 'src/app/models/transaction';
 import { LabelService } from 'src/app/services/label.service';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
@@ -14,10 +15,8 @@ import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 })
 export class ModulSettingLabelsComponent implements OnInit {
 
-  //labelForm! : FormGroup;
   getListLabels!: any;
   dragItem : boolean = true;
-  textButton : string = 'Crear categoria'
   labelForm = new FormControl('', Validators.required);
   token = this.parseJwt(localStorage.getItem('token'));
 
@@ -25,6 +24,7 @@ export class ModulSettingLabelsComponent implements OnInit {
     public labelService: LabelService,
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
+    private translocoService: TranslocoService
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class ModulSettingLabelsComponent implements OnInit {
         res => {
           this.getLabels(); 
           this.labelForm.reset();
-          this.snackMessage('Registro actualizado!', 'btn_success');
+          this.snackMessage(this.translocoSelect("snackMessage.update")!, 'btn_success');
         },
         err => console.log(err)
       )
@@ -78,7 +78,7 @@ export class ModulSettingLabelsComponent implements OnInit {
         res => {
           this.getLabels();
           this.labelForm.reset();
-          this.snackMessage('Registro creado!', 'btn_success');
+          this.snackMessage(this.translocoSelect("snackMessage.create")!, 'btn_success');
         },
         err => console.log(err)
       )
@@ -90,8 +90,8 @@ export class ModulSettingLabelsComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAlertComponent, {
       width: '300px',
       data: {
-        title: 'Delete',
-        message: 'Are you sure you want to delete it?',
+        title: this.translocoSelect("dialog.title.delete"),
+        message: this.translocoSelect("dialog.message.delete"),
         type: 'btn_danger',
         color: 'text_danger',
         icon: 'fa-circle-exclamation'
@@ -106,7 +106,7 @@ export class ModulSettingLabelsComponent implements OnInit {
           this.labelService.updateLabel(this.getListLabels).subscribe(
             res => {
               this.getLabels();
-              this.snackMessage('Registro Eliminado!', 'btn_danger');
+              this.snackMessage(this.translocoSelect("snackMessage.delete")!, 'btn_danger');
             },
             err => console.log(err)
           )
@@ -151,5 +151,14 @@ export class ModulSettingLabelsComponent implements OnInit {
 
     return JSON.parse(jsonPayload);
   };
+
+  //function that return transloco
+  translocoSelect(valueKey: string) {
+    let respon;
+    this.translocoService.selectTranslate(valueKey).subscribe(value => {
+      respon = value;
+    })
+    return respon;
+  }
 
 }

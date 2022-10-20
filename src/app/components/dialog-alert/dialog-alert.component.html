@@ -19,13 +19,13 @@
   <button
     mat-button
     mat-dialog-close>
-    No
+    {{ "dialog.button.no" | transloco }}
   </button>
   <button
     mat-button
     mat-dialog-close
     cdkFocusInitial
     (click)="ref()">
-    Ok
+    {{ "dialog.button.yes" | transloco }}
   </button>
 </div>
