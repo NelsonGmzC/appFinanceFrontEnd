@@ -40,6 +40,7 @@ export class ModulTransactionComponent implements OnInit {
   getListCategories! : any;
   token = this.parseJwt(localStorage.getItem('token'));
   messageTransloco!: string;
+  contentLoaded = false;
 
   constructor(
     public transactionService: TransactionService,
@@ -51,15 +52,16 @@ export class ModulTransactionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTransactions();
-    this.getCategories();    
+    this.getCategories();  
+    this. contentLoaded = true;  
   }
 
   //total of spent & entry
   totalMoney(res: Transaction[]){
     for (let data of res) {
-      if (data.category === 'Gasto') {
+      if (data.category === '0') {
         this.totalSpent = this.totalSpent + data.amoint;
-      } else if (data.category === 'Ingreso') {
+      } else if (data.category === '1') {
         this.totalEntry = this.totalEntry + data.amoint;
       }
     }
@@ -85,6 +87,7 @@ export class ModulTransactionComponent implements OnInit {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this. contentLoaded = false;
       },
       err => console.log(err)
     )

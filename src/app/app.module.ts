@@ -36,6 +36,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { TranslocoRootModule } from './transloco-root.module';
 import { SelectLanguageComponent } from './components/select-language/select-language.component';
 import { ModulComponent } from './components/modul/modul.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ModulComponent } from './components/modul/modul.component';
     MatTooltipModule,
     DragDropModule,
     MatSnackBarModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [
     MatDatepickerModule,

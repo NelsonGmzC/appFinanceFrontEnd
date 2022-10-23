@@ -44,34 +44,48 @@
           {{ "modulLabel.titleList" | transloco }}
         </b>
       </p>
-      <div *ngIf="getListLabels !== undefined">
-        <div
-          *ngFor="let label of getListLabels.labels"
-          cdkDrag
-          [cdkDragDisabled]="dragItem"
-          class="ctItemCategory">
-          <p>
-            {{label}}
-          </p>
-          <button
-            class="btn drag"
-            color="warn"
-            (mousedown)="dragItem = false"
-            (mouseup)="dragItem = true"
-            matTooltip="Drag"
-            matTooltipPosition="above">
-            <i class="fa-light fa-arrows-from-line"></i>
-          </button>
-          <button
-            class="btn btn_warn_table"
-            color="warn"
-            (click)="deleteLabel(label)"
-            matTooltip="Delete"
-            matTooltipPosition="above">
-            <i class="fa-light fa-trash-can"></i>
-          </button>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded; else titleListLoaded"
+        [theme]="{ width: 'calc(100% - 70px)', height: '20px', 'margin': '0 5px 18px 5px' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded"
+        [theme]="{ width: '20px', height: '20px', 'margin': '0 5px 18px 5px'}"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded"
+        [theme]="{ width: '20px', height: '20px', 'margin': '0 5px 18px 5px' }"
+      ></ngx-skeleton-loader>
+      <ng-template #titleListLoaded>
+        <div *ngIf="getListLabels !== undefined">
+          <div
+            *ngFor="let label of getListLabels.labels"
+            cdkDrag
+            [cdkDragDisabled]="dragItem"
+            class="ctItemCategory">
+            <p>
+              {{label}}
+            </p>
+            <button
+              class="btn drag"
+              color="warn"
+              (mousedown)="dragItem = false"
+              (mouseup)="dragItem = true"
+              [matTooltip]="'tooltip.drag' | transloco"
+              matTooltipPosition="above">
+              <i class="fa-light fa-arrows-from-line"></i>
+            </button>
+            <button
+              class="btn btn_warn_table"
+              color="warn"
+              (click)="deleteLabel(label)"
+              [matTooltip]="'tooltip.delete' | transloco"
+              matTooltipPosition="above">
+              <i class="fa-light fa-trash-can"></i>
+            </button>
+          </div>
         </div>
-      </div>
+      </ng-template>
     </div>
   </div>
 </div>

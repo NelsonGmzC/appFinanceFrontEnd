@@ -113,48 +113,67 @@
           {{ "modulCategory.titleEntry" | transloco }}
         </b>
       </p>
-      <div
-        *ngFor="let category of getListCategories"
-        cdkDrag
-        [cdkDragDisabled]="dragItem">
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded; else titleEntryLoaded"
+        appearance="circle"
+        [theme]="{ width: '45px', height: '45px', 'margin': '0 5px 0 5px' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded"
+        [theme]="{ width: 'calc(100% - 115px)', height: '20px', 'margin-bottom': '13px' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded"
+        [theme]="{ width: '20px', height: '20px', 'margin': '0 5px 13px 5px'}"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded"
+        [theme]="{ width: '20px', height: '20px', 'margin': '0 5px 13px 5px' }"
+      ></ngx-skeleton-loader>
+      <ng-template #titleEntryLoaded>
         <div
-          class="ctItemCategory"
-          *ngIf="category.category === '1'">
-          <i
-            class="fa-light iconCategory"
-            [ngClass]="category.icon"
-            [ngStyle]="{'background-color': category.color}">
-          </i>
-          <p>
-            {{category.name}}
-          </p>
-          <button
-            class="btn drag"
-            color="warn"
-            (mousedown)="dragItem = false"
-            (mouseup)="dragItem = true"
-            [matTooltip]="'tooltip.drag' | transloco"
-            matTooltipPosition="above">
-            <i class="fa-light fa-arrows-from-line"></i>
-          </button>
-          <button
-            class="btn btn_info_table"
-            color="warn"
-            (click)="editCategory(category)"
-            [matTooltip]="'tooltip.edit' | transloco"
-            matTooltipPosition="above">
-            <i class="fa-light fa-pen-to-square"></i>
-          </button>
-          <button
-            class="btn btn_warn_table"
-            color="warn"
-            (click)="deleteCategory(category._id)"
-            [matTooltip]="'tooltip.delete' | transloco"
-            matTooltipPosition="above">
-            <i class="fa-light fa-trash-can"></i>
-          </button>
+          *ngFor="let category of getListCategories"
+          cdkDrag
+          [cdkDragDisabled]="dragItem">
+          <div
+            class="ctItemCategory"
+            *ngIf="category.category === '1'">
+            <i
+              class="fa-light iconCategory"
+              [ngClass]="category.icon"
+              [ngStyle]="{'background-color': category.color}">
+            </i>
+            <p>
+              {{category.name}}
+            </p>
+            <button
+              class="btn drag"
+              color="warn"
+              (mousedown)="dragItem = false"
+              (mouseup)="dragItem = true"
+              [matTooltip]="'tooltip.drag' | transloco"
+              matTooltipPosition="above">
+              <i class="fa-light fa-arrows-from-line"></i>
+            </button>
+            <button
+              class="btn btn_info_table"
+              color="warn"
+              (click)="editCategory(category)"
+              [matTooltip]="'tooltip.edit' | transloco"
+              matTooltipPosition="above">
+              <i class="fa-light fa-pen-to-square"></i>
+            </button>
+            <button
+              class="btn btn_warn_table"
+              color="warn"
+              (click)="deleteCategory(category._id)"
+              [matTooltip]="'tooltip.delete' | transloco"
+              matTooltipPosition="above">
+              <i class="fa-light fa-trash-can"></i>
+            </button>
+          </div>
         </div>
-      </div>
+      </ng-template>
     </div>
     <div
       cdkDropList
@@ -164,48 +183,67 @@
           {{ "modulCategory.titleSpent" | transloco }}
         </b>
       </p>
-      <div
-        *ngFor="let category of getListCategories"
-        cdkDrag
-        [cdkDragDisabled]="dragItem">
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded; else titleSpentLoaded"
+        appearance="circle"
+        [theme]="{ width: '45px', height: '45px', 'margin': '0 5px 0 5px' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded"
+        [theme]="{ width: 'calc(100% - 115px)', height: '20px', 'margin-bottom': '13px' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded"
+        [theme]="{ width: '20px', height: '20px', 'margin': '0 5px 13px 5px'}"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        *ngIf="contentLoaded"
+        [theme]="{ width: '20px', height: '20px', 'margin': '0 5px 13px 5px' }"
+      ></ngx-skeleton-loader>
+      <ng-template #titleSpentLoaded>
         <div
-          class="ctItemCategory"
-          *ngIf="category.category === '0'">
-          <i
-            class="fa-light iconCategory"
-            [ngClass]="category.icon"
-            [ngStyle]="{'background-color': category.color}">
-          </i>
-          <p>
-            {{category.name}}
-          </p>
-          <button
-            class="btn drag"
-            color="warn"
-            (mousedown)="dragItem = false"
-            (mouseup)="dragItem = true"
-            [matTooltip]="'tooltip.drag' | transloco"
-            matTooltipPosition="above">
-            <i class="fa-light fa-arrows-from-line"></i>
-          </button>
-          <button
-            class="btn btn_info_table"
-            color="warn"
-            (click)="editCategory(category)"
-            [matTooltip]="'tooltip.edit' | transloco"
-            matTooltipPosition="above">
-            <i class="fa-light fa-pen-to-square"></i>
-          </button>
-          <button
-            class="btn btn_warn_table"
-            color="warn"
-            (click)="deleteCategory(category._id)"
-            [matTooltip]="'tooltip.delete' | transloco"
-            matTooltipPosition="above">
-            <i class="fa-light fa-trash-can"></i>
-          </button>
+          *ngFor="let category of getListCategories"
+          cdkDrag
+          [cdkDragDisabled]="dragItem">
+          <div
+            class="ctItemCategory"
+            *ngIf="category.category === '0'">
+            <i
+              class="fa-light iconCategory"
+              [ngClass]="category.icon"
+              [ngStyle]="{'background-color': category.color}">
+            </i>
+            <p>
+              {{category.name}}
+            </p>
+            <button
+              class="btn drag"
+              color="warn"
+              (mousedown)="dragItem = false"
+              (mouseup)="dragItem = true"
+              [matTooltip]="'tooltip.drag' | transloco"
+              matTooltipPosition="above">
+              <i class="fa-light fa-arrows-from-line"></i>
+            </button>
+            <button
+              class="btn btn_info_table"
+              color="warn"
+              (click)="editCategory(category)"
+              [matTooltip]="'tooltip.edit' | transloco"
+              matTooltipPosition="above">
+              <i class="fa-light fa-pen-to-square"></i>
+            </button>
+            <button
+              class="btn btn_warn_table"
+              color="warn"
+              (click)="deleteCategory(category._id)"
+              [matTooltip]="'tooltip.delete' | transloco"
+              matTooltipPosition="above">
+              <i class="fa-light fa-trash-can"></i>
+            </button>
+          </div>
         </div>
-      </div>
+      </ng-template>
     </div>
   </div>
 </div>

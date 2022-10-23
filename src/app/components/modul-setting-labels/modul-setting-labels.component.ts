@@ -19,6 +19,7 @@ export class ModulSettingLabelsComponent implements OnInit {
   dragItem : boolean = true;
   labelForm = new FormControl('', Validators.required);
   token = this.parseJwt(localStorage.getItem('token'));
+  contentLoaded = false;
 
   constructor(
     public labelService: LabelService,
@@ -29,6 +30,7 @@ export class ModulSettingLabelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLabels();
+    this.contentLoaded = true;
   }
 
   //get list labels
@@ -40,6 +42,7 @@ export class ModulSettingLabelsComponent implements OnInit {
         } else {
           this.getListLabels = {};
         }
+        this.contentLoaded = false;
       },
       err => console.log(err)
     )

@@ -29,3 +29,12 @@
   color: $color_primary;
   background-color: rgba(119, 106, 255, 0.1882352941);
 }
+
+@media (max-width: 600px) {
+  .contentSetting {
+    grid-template-columns: 1fr;
+  }
+  .contentSetting > div:nth-child(1) {
+    margin-bottom: 20px;
+  }
+}

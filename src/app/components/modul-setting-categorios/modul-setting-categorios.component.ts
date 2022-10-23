@@ -24,6 +24,7 @@ export class ModulSettingCategoriosComponent implements OnInit {
   getListCategories!: any;
   dragItem : boolean = true;
   token = this.parseJwt(localStorage.getItem('token'));
+  contentLoaded = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +36,7 @@ export class ModulSettingCategoriosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
+    this.contentLoaded = true;
 
     //validation of form
     this.categoryForm = this.formBuilder.group({
@@ -51,6 +53,7 @@ export class ModulSettingCategoriosComponent implements OnInit {
     this.categoryService.getCategories(this.token._id).subscribe(
       res =>{
         this.getListCategories = res;
+        this.contentLoaded = false;
       },
       err => console.log(err)
     )
