@@ -21,6 +21,12 @@
   padding: 20px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+.contentLogin .logo {
+  text-align: center;
+}
+.contentLogin .logo img {
+  max-width: 200px;
+}
 
 .formLogin form {
   display: grid;

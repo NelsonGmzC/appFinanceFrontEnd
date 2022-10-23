@@ -2,14 +2,14 @@
 @import '../../../styles.scss';
 
 .containerHeaderBg {
-  background-color: $color_light;
+  background-color: $color_primary_dark;
   position: relative;
   width: 100%;
   height: 50px;
   margin-bottom: 20px;
 }
 .containerHeader {
-  background-color: $color_light;
+  background-color: $color_primary_dark;
   position: relative;
   width: calc(100% - 40px);
   max-width: 1300px;
@@ -67,14 +67,20 @@
   text-align: center;
   margin: 0;
   text-decoration: none;
+  color:  $color_light;
+  opacity: .7;
 }
 .ctModuls a:hover {
   cursor: pointer;
-  background-color: $color_secondary;
+  //background-color: $color_secondary;
+  color: $color_light;
+  background-color: #776AFF30;
+  opacity: .7;
 }
 .ctModuls a.act {
-  color: $color_primary;
+  color: $color_light;
   background-color: #776AFF30;
+  opacity: 1;
 }
 .ctModuls a.act::after {
   content: "";
@@ -82,6 +88,6 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 5px;
   background-color: $color_primary;
 }
