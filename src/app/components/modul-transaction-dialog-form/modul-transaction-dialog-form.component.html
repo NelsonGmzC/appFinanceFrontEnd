@@ -152,10 +152,11 @@
           {{ "modulTransactionTable.coin" | transloco }}
         </mat-label>
         <mat-select
-          formControlName="coin">
+          formControlName="coin"
+          [(value)]="coins[0].viewValue">
           <mat-option
             *ngFor="let coin of coins"
-            [value]="coin.value">
+            [value]="coin.viewValue">
             {{coin.viewValue}}
           </mat-option>
         </mat-select>

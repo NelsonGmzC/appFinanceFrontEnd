@@ -1,5 +1,57 @@
-canvas {
-  margin: 0 auto;
+@import '../../../styles.scss';
+
+//content modul chart
+//------>
+.ctChart01, .ctChart02 {
+  background-color: $color_light;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.ctChart02 {
+  text-align: center;
+}
+.stCanvas01 {
+  margin: 20px auto;
   width: 100%;
-  max-width: 300px;
+  max-width: 220px;
+}
+.stCanvas02 {
+  width: 100%;
+}
+
+//content item info chart
+//------>
+.ctItemInf {
+  display: grid;
+  grid-template-columns: 40px 1fr 25px 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  max-width: 250px;
+  margin: 0 auto;
+  padding: 5px;
+  border-bottom: 1px solid #efefef;
+  text-align: initial;
+}
+.ctItemInf .iconCategory {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  text-align: center;
+  align-items: center;
+  font-size: 1.2rem;
+  background-color: #444;
+  color: $color_light;
+  border-radius: 50%;
+}
+.ctItemInf .countsTrans {
+  background: #f4f8f9;
+  display: inline-block;
+  width: 20px;
+  padding: 3px;
+  border-radius: 20px;
+  text-align: center;
+}
+.ctInfChart .ng-star-inserted:last-child .ctItemInf {
+  border-bottom: none;
 }

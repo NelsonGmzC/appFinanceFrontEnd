@@ -1,1 +1,48 @@
-<canvas #pieCanvas></canvas>
+<div class="ctChart01">
+  <h3>{{ "titles.accountBalance" | transloco }}</h3>
+  <canvas #pieCanvas2 class="stCanvas02"></canvas>
+</div>
+
+<div class="ctChart02">
+  <div class="btnSelectChart">
+    <button
+      mat-flat-button
+      [color]="changeChart === '0' ? 'primary' : 'secundary'"
+      (click)="changeChartBtn('0')">
+      {{ "button.periodExpenses" | transloco }}
+    </button>
+    <button
+      mat-flat-button
+      [color]="changeChart === '1' ? 'primary' : 'secundary'"
+      (click)="changeChartBtn('1')">
+      {{ "button.periodIncome" | transloco }}
+    </button>
+  </div>
+
+  <canvas #pieCanvas class="stCanvas01"></canvas>
+
+  <ngx-skeleton-loader
+    *ngIf="contentLoaded; else totalEntryLoaded"
+    [theme]="{ width: '170px', 'border-radius': '0', height: '28px', 'margin-top': '5px' }">
+  </ngx-skeleton-loader>
+  <ng-template #totalEntryLoaded>
+    <div class="ctInfChart">
+      <div *ngFor="let category of listCategories">
+        <div class="ctItemInf" *ngIf="category.category === changeChart">
+          <i
+            class="fa-light iconCategory"
+            [ngClass]="category.icon"
+            [ngStyle]="{'background-color': category.color}">
+          </i>
+          <p>
+            <b>{{ category.name }}</b>
+          </p>
+          <p class="countsTrans">
+            {{ category.countsTrans }}
+          </p>
+          <p>{{ "headerTop.transactions" | transloco }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

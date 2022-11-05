@@ -1,26 +1,47 @@
 //color
 @import '../../../styles.scss';
 
+.bodyModul {
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: 1fr .5fr;
+  grid-gap: 20px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+@media (max-width: 900px) {
+  .bodyModul {
+    grid-template-columns: 1fr;
+  }
+}
+
 //content table
 .content { 
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
+  overflow: auto;
 }
 
 //content btn & filter of the table
 //------>
 .ctHeadTb {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 100px 1fr;
+  grid-gap: 10px;
   align-items: center;
-  margin: 10px 20px 10px;
-}
-.ctHeadTb .mat-form-field {
-  margin-bottom: -1.25em;
+  background-color: $color_light;
+  padding: 15px;
 }
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+}
+.ctHeadTb ::ng-deep .mat-form-field-wrapper {
+  margin: 0;
+  padding: 0;
+}
+.ctHeadTb ::ng-deep .mat-form-field-infix {
+  padding: 5px 0 10px 0;
 }
 
 //table general
@@ -170,7 +191,7 @@ tr.mat-row:hover .btn_warn_table {
 .ctTotal {
   position: relative;
   width: 100%;
-  height: 70px;
+  height: 75px;
   overflow: auto;
   margin-top: 10px;
 }

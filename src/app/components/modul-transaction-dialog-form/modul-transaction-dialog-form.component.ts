@@ -67,7 +67,7 @@ export class ModulTransactionDialogFormComponent implements OnInit {
       notes : [''], 
       labels : [''],
       amoint : ['', Validators.required],
-      coin : ['', Validators.required],
+      coin : ['COP', Validators.required],
       img : ['']
     });
 

@@ -39,6 +39,9 @@ export class SelectLanguageComponent implements OnInit {
           break;
       }
       this._translocoService.setActiveLang(this.languageStorage);
+    } else {
+      this._translocoService.setActiveLang(this.languageStorage);
+      this.img += "es.png"
     }
   }
 

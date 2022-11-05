@@ -27,11 +27,17 @@
     "setting": "Setting",
     "signOff": "Sign Off"
   },
+  "titles": {
+    "accountBalance": "Account balance"
+  },
   "button": {
     "newRecord": "New record",
     "save": "Save",
     "close": "Close",
-    "clear": "Clear"
+    "clear": "Clear",
+    "export": "Export",
+    "periodExpenses": "Period expenses",
+    "periodIncome": "Period income"
   },
   "tooltip": {
     "edit": "Edit",

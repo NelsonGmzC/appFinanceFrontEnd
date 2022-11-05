@@ -36,7 +36,9 @@
             "scripts": [
             ],
             "allowedCommonJsDependencies": [
-              "flat"
+              "flat",
+              "xlsx",
+              "xlsx/dist/xlsx.mini.min"
             ]
           },
           "configurations": {

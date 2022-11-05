@@ -27,11 +27,17 @@
     "setting": "Ajustes",
     "signOff": "Cerrar sesión"
   },
+  "titles": {
+    "accountBalance": "Saldo de la Cuenta"
+  },
   "button": {
     "newRecord": "Nuevo registro",
     "save": "Guardar",
     "close": "Cerrar",
-    "clear": "Limpiar"
+    "clear": "Limpiar",
+    "export": "Exportar",
+    "periodExpenses": "Gastos del Período",
+    "periodIncome": "Ingresos del Período"
   },
   "tooltip": {
     "edit": "Editar",

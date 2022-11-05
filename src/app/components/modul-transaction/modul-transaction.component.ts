@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TransactionService } from '../../services/transaction.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { Transaction } from 'src/app/models/transaction';
@@ -18,10 +18,13 @@ import { TranslocoService } from '@ngneat/transloco';
 })
 
 export class ModulTransactionComponent implements OnInit {
+  //[x: string]: any;
 
   //varibles
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   @ViewChild(MatSort) sort! : MatSort;
+  //@ViewChild('tableLoaded2') table! : ElementRef;
+  @ViewChild('exporter') exporter: any;
   transactionDialog : any;
   displayedColumns : any[] = [
     'category',
@@ -38,9 +41,12 @@ export class ModulTransactionComponent implements OnInit {
   totalEntry : number = 0;
   total : number = 0;
   getListCategories! : any;
+  getListTransaction! : any;
   token = this.parseJwt(localStorage.getItem('token'));
   messageTransloco!: string;
   contentLoaded = false;
+  myBgColor = '#9DCEFD'
+  // exporter: any;
 
   constructor(
     public transactionService: TransactionService,
@@ -84,6 +90,7 @@ export class ModulTransactionComponent implements OnInit {
       res =>{
         res.reverse();
         this.totalMoney(res);
+        this.getListTransaction = res;
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

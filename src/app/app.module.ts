@@ -37,6 +37,7 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { SelectLanguageComponent } from './components/select-language/select-language.component';
 import { ModulComponent } from './components/modul/modul.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MatSnackBarModule,
     TranslocoRootModule,
     NgxSkeletonLoaderModule,
+    MatTableExporterModule
   ],
   providers: [
     MatDatepickerModule,
